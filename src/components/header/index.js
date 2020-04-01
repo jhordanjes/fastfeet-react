@@ -1,25 +1,41 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { signOut } from '../../store/modules/auth/actions';
 import logo from '../../assets/fastfeet.png';
 import { Container, Content, Profile } from './styles';
 
-export default function header() {
+export default function Header() {
+  const dispatch = useDispatch();
+  function handleSignOut() {
+    dispatch(signOut());
+  }
+
+  const profile = useSelector(state => state.user.profile);
   return (
     <Container>
       <Content>
         <nav>
           <img src={logo} alt="Fasfeet" />
-          <Link to="/dashboard">Encomendas</Link>
-          <Link to="/dashboard">Entregadores</Link>
-          <Link to="/dashboard">Destinatários</Link>
-          <Link to="/dashboard">Problemas</Link>
+          <NavLink to="/orders" activeClassName="selected">
+            Encomendas
+          </NavLink>
+          <NavLink to="/dashboard" activeClassName="selected">
+            Entregadores
+          </NavLink>
+          <NavLink to="/dashboard" activeClassName="selected">
+            Destinatários
+          </NavLink>
+          <NavLink to="/dashboard" activeClassName="selected">
+            Problemas
+          </NavLink>
         </nav>
         <aside>
           <Profile>
-            <div>
-              <strong>Jhordan Jessé</strong>
-              <span>Sair do Sistema</span>
-            </div>
+            <strong>{profile.name}</strong>
+            <button type="submit" onClick={handleSignOut}>
+              Sair do Fastfeet
+            </button>
           </Profile>
         </aside>
       </Content>

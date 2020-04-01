@@ -1,26 +1,26 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { MdClose } from 'react-icons/md';
+import { Container } from './styles';
 
-import { Container, Content } from './styles';
-
-export default function Modal({ openModal }) {
+export default function Modal({ children, openModal, setModal }) {
   return (
     <Container openModal={openModal}>
-      <Content>
-        <div>
-          <strong>Informações da encomenda</strong>
-          <p>Rua Largo do Prata, 175</p>
-          <p>Manaus, Am</p>
-          <p>69190000</p>
-        </div>
-        <div>
-          <strong>Datas</strong>
-          <p>Retirada: 25/01/2020</p>
-          <p>Entrega: 15/03/2020</p>
-        </div>
-        <div>
-          <strong>Assinatura do destinátario</strong>
-        </div>
-      </Content>
+      <div>
+        <aside>
+          <span>Informações</span>
+          <button onClick={() => setModal(!openModal)} type="button">
+            <MdClose size={20} color="#fff" />
+          </button>
+        </aside>
+        {children}
+      </div>
     </Container>
   );
 }
+
+Modal.propTypes = {
+  children: PropTypes.node.isRequired,
+  openModal: PropTypes.bool.isRequired,
+  setModal: PropTypes.func.isRequired,
+};

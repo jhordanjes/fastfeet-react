@@ -33,6 +33,10 @@ export const Content = styled.div`
         color: #424242;
       }
     }
+
+    .selected {
+      color: #424242;
+    }
   }
 
   aside {
@@ -45,23 +49,21 @@ export const Profile = styled.div`
   display: flex;
   flex-direction: column;
 
-  div {
-    text-align: right;
+  strong {
+    display: block;
+    color: #333;
+  }
 
-    strong {
-      display: block;
-      color: #333;
-    }
+  > button {
+    display: block;
+    margin-top: 3px;
+    color: #fb6f91;
+    background: none;
+    border: 0;
+    transition: 0.2s;
 
-    span {
-      display: block;
-      margin-top: 2px;
-      color: #fb6f91;
-      transition: 0.2s;
-
-      &:hover {
-        color: #fa5558;
-      }
+    &:hover {
+      color: #fa5558;
     }
   }
 `;

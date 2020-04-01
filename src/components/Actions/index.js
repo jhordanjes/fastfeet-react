@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { MdMoreHoriz, MdRemoveRedEye, MdEdit, MdDelete } from 'react-icons/md';
 import { Container, Badge, ActionsList } from './styles';
-import Modal from '../Modal';
 
 export default function Actions() {
   const [visible, setVisible] = useState(false);
@@ -38,7 +37,6 @@ export default function Actions() {
           </Badge>
         </li>
       </ActionsList>
-      <Modal openModal={openModal} />
     </Container>
   );
 }

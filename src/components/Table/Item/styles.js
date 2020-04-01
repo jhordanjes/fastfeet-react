@@ -1,13 +1,27 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
-export const Container = styled.div`
-  position: relative;
+const upAnimate = keyframes`
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+`;
+
+export const TableItem = styled.tr`
+  background: #fff;
+
+  td p {
+    display: inline-block;
+  }
 `;
 
 export const Badge = styled.button`
   background: none;
   border: 0;
-  position: relative;
 `;
 
 export const ActionsList = styled.ul`
@@ -15,10 +29,11 @@ export const ActionsList = styled.ul`
   background: #fff;
   top: 30px;
   width: 150px;
-  left: calc(50% - 100px);
+  left: calc(50% - 60px);
   border: 1px solid #eee;
   border-radius: 4px;
   display: ${props => (props.visible ? 'block' : 'none')};
+  animation: ${upAnimate} 300ms ease forwards;
 
   &::before {
     content: '';
@@ -29,7 +44,7 @@ export const ActionsList = styled.ul`
     height: 0;
     border-left: 10px solid transparent;
     border-right: 10px solid transparent;
-    border-bottom: 10px solid #eee;
+    border-bottom: 10px solid rgba(1, 1, 1, 0.1);
   }
 
   li {
@@ -39,4 +54,8 @@ export const ActionsList = styled.ul`
       border-top: 1px solid #eee;
     }
   }
+`;
+
+export const Container = styled.div`
+  position: relative;
 `;

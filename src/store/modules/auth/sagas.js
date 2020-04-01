@@ -16,7 +16,7 @@ export function* signIn({ payload }) {
     const { token, user } = response.data;
     api.defaults.headers.Authorization = `Bearer ${token}`;
     yield put(signInSuccess(token, user));
-    history.push('/dashboard');
+    history.push('/orders');
   } catch (err) {
     toast.error('Falha na autenticação, verifique seus dados');
     yield put(signFailure());
@@ -50,8 +50,13 @@ export function setToken({ payload }) {
   }
 }
 
+export function signOut() {
+  history.push('/');
+}
+
 export default all([
+  takeLatest('persist/REHYDRATE', setToken),
   takeLatest('@auth/SIGN_IN_REQUEST', signIn),
   takeLatest('@auth/SIGN_UP_REQUEST', signUp),
-  takeLatest('persist/REHYDRATE', setToken),
+  takeLatest('@auth/SIGN_OUT', signOut),
 ]);

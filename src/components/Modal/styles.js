@@ -1,4 +1,15 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+
+const upAnimate = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(-200px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
 
 export const Container = styled.div`
   display: ${props => (props.openModal ? 'block' : 'none')};
@@ -9,26 +20,43 @@ export const Container = styled.div`
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: rgba(0, 0, 0, 0.2);
-`;
+  background-color: rgba(0, 0, 0, 0.4);
 
-export const Content = styled.div`
-  background-color: #fefefe;
-  margin: 150px auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 400px;
-  border-radius: 4px;
+  > div {
+    background-color: #fefefe;
+    margin: 120px auto;
+    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.2);
+    width: 430px;
+    animation: ${upAnimate} 200ms ease forwards;
 
-  p {
-    padding-top: 10px;
-  }
+    aside {
+      background: #7159c1;
+      padding: 15px 25px;
+      color: #fff;
+      font-weight: bold;
+      text-transform: uppercase;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      justify-items: center;
 
-  div {
-    & + div {
-      margin-top: 10px;
+      button {
+        border: 0;
+        background: none;
+      }
+    }
+
+    p {
       padding-top: 10px;
-      border-top: 2px solid #eee;
+    }
+
+    div {
+      padding: 10px 20px;
+      & + div {
+        margin-top: 10px;
+        padding-top: 10px;
+        border-top: 2px solid #eee;
+      }
     }
   }
 `;
